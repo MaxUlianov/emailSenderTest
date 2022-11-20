@@ -4,3 +4,6 @@
 # Environments
 .venv
 venv/
+
+# database files
+email_sender/db.sqlite3
