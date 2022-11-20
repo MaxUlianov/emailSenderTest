@@ -11,3 +11,7 @@ class User(models.Model):
 
     def __str__(self):
         return self.name + ' ' + self.second_name
+
+    @classmethod
+    def access(cls):
+        return cls.objects.all()

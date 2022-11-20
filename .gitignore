@@ -7,3 +7,5 @@ venv/
 
 # database files
 email_sender/db.sqlite3
+email_sender/email_sender/.env
+*.env
