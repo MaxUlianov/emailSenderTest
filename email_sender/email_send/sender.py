@@ -7,11 +7,21 @@ django.setup()
 from email_send.models import User
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.contrib.sites.models import Site
+
+
+def get_site():
+    return Site.objects.get_current()
 
 
 def send_email(name, second_name, email):
     subject = 'Email'
-    html_message = render_to_string('email.html', {'name': name, 'second_name': second_name})
+
+    print(get_site())
+    # image_url = HttpRequest.build_absolute_uri(reverse("image_load"))
+    image_url = r'^image_load/$'
+
+    html_message = render_to_string('email.html', {'name': name, 'second_name': second_name, 'image_url': image_url})
     plain_text = strip_tags(html_message)
     from_email = 'From <curze.curze@yandex.ru>'
     to = email
@@ -21,5 +31,4 @@ def send_email(name, second_name, email):
 
 
 for user in User.access():
-    print('send')
     send_email(user.name, user.second_name, user.email)

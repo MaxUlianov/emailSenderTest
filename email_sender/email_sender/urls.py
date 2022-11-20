@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from email_send.views import index
+from email_send.views import index, image_load
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name='email_send_index')
+    url(r'^$', index, name='email_send_index'),
+    url(r'^image_load/$', image_load, name='image_load')
 ]

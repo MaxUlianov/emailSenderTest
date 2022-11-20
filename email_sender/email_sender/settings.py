@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'email_send'
+    'email_send',
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = env("EMAIL_USE_SSL")
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+
+SITE_ID = 1
