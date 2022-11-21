@@ -9,13 +9,18 @@ from PIL import Image
 from django.http import HttpResponse
 import logging
 import datetime
+from django.contrib.sites.models import Site
 
 logger = logging.getLogger(__name__)
 
 
 def index(request):
-    url = request.build_absolute_uri("image_load")
-    print(url)
+    url = request.build_absolute_uri()
+
+    current_site = Site.objects.get_current()
+    current_site.domain = url
+    current_site.name = 'Site'
+    current_site.save()
 
     form = AddUserForm(request.POST or None)
     if request.method == "POST":
@@ -23,8 +28,6 @@ def index(request):
             form.save()
         return redirect("email_send_index")
 
-    for user in User.objects.all():
-        print(user.name, user.second_name, user.email)
     return render(request, 'index.html', {"form": form})
 
 
