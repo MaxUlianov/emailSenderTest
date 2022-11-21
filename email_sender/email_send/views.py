@@ -7,9 +7,15 @@ from email_send.forms import AddUserForm
 
 from PIL import Image
 from django.http import HttpResponse
+import logging
+import datetime
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
+    url = request.build_absolute_uri("image_load")
+    print(url)
 
     form = AddUserForm(request.POST or None)
     if request.method == "POST":
@@ -27,5 +33,5 @@ def image_load(request):
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
 
-    print('Email was opened')
+    logging.warning('email opened at {time}'.format(time=datetime.datetime.now()))
     return response

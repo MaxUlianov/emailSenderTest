@@ -18,8 +18,8 @@ def send_email(name, second_name, email):
     subject = 'Email'
 
     print(get_site())
-    # image_url = HttpRequest.build_absolute_uri(reverse("image_load"))
-    image_url = r'^image_load/$'
+
+    image_url = 'http://192.168.100.36:5000/image_load'
 
     html_message = render_to_string('email.html', {'name': name, 'second_name': second_name, 'image_url': image_url})
     plain_text = strip_tags(html_message)
